@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxy.core.dao.TeacherDao" >
+    <!-- 查询用户 -->   
+ <select id="findteacher"  resultType="Teacher">
+	    select * from teacherlist   
+ </select>
+ <select id="findateacher"  resultType="Teacher">
+    	select * from  teacherlist  where teacher_name=#{teacher_name}   	
+ </select>
+ <delete id="deleteteacher" parameterType="String">
+		delete  from teacherlist where teacher_id = #{teacher_id}
+ </delete>
+ <select id="getTeacherByid" resultType="Teacher">
+ 		select * from  teacherlist where teacher_id=#{teacher_id}
+ </select> 
+ <update id="updateTeacher" parameterType="teacher">
+ 	update teacherlist
+ 	<set>	
+ 		<if test="teacher_name!=null">teacher_name=#{teacher_name},</if>
+ 		<if test="teacher_id!=null">teacher_id=#{teacher_id},</if>
+ 		<if test="teacher_phone!=null">teacher_phone=#{teacher_phone},</if>
+ 		<if test="IDcard!=null">IDcard=#{IDcard},</if>
+ 		<if test="teacher_dp!=null">teacher_dp=#{teacher_dp},</if>	
+ 	</set>
+ 	where teacher_id=#{teacher_id}
+ </update>
+ <insert id="addTeacher" parameterType="teacher">
+ 	insert into teacherlist(
+ 		teacher_name,
+ 		teacher_id,
+ 		teacher_phone,
+ 		IDcard,
+ 		teacher_dp
+ 	)
+ 	values(
+ 		#{teacher_name},
+ 		#{teacher_id},
+ 		#{teacher_phone},
+ 		#{IDcard},
+ 		#{teacher_dp}
+ 	)
+ </insert>
+ 
+ 
+
+ 
+ 
+</mapper>

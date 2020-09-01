@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxy.core.dao.FileDao" >
+    <!-- 查询用户 -->
+ <select id="findFiles"  resultType="Files">
+	    select * from filelist   
+ </select>
+  
+  <insert id="updatafilelist" parameterType="String">
+  		insert into filelist(
+  			file_maker,
+  			file_name,
+  			file_id
+  			
+  		
+  		)
+  		values(
+  			#{file_maker},
+  			#{file_name},
+  			#{file_id}
+  			
+  		
+  		)
+  </insert>  
+   
+  <select id="findaFiles"  resultType="Files">
+	    select * from filelist   where file_maker=#{file_maker} 
+ </select>
+ 
+ <select id="findaFilesbyid"  parameterType="String" resultType="Files">
+	    select *  from   filelist   where file_id=#{file_id} 
+ </select>
+ 
+ <update id="updatefiles" parameterType="Files">
+ update filelist  set   file_maker=#{file_maker} where file_id=#{file_id}
+ 	
+ </update>
+    
+ <delete id="deletefile" parameterType="Integer">
+		delete  from  filelist  where file_id = #{file_id}
+ </delete>
+ 
+ <delete id="psdeletefile" parameterType="String">
+		delete  from  filelist  where file_id = #{file_id}
+ </delete>
+    
+</mapper>
